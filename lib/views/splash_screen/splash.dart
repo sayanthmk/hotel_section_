@@ -25,3 +25,21 @@ class AuthWrapper extends StatelessWidget {
     );
   }
 }
+// import 'package:flutter/material.dart';
+// import 'package:hotel_side/controllers/auth_service/auth_service.dart';
+// import 'package:hotel_side/views/auth/check_reg_page/regcheckpage.dart';
+// import 'package:hotel_side/views/auth/route_page.dart';
+// import 'package:provider/provider.dart';
+
+// class AuthWrapper extends StatelessWidget {
+//   const AuthWrapper({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Consumer<AuthService>(
+//       builder: (context, auth, child) {
+//         return auth.newuser != null ? AuthSelectionPage() : HotelCheckPage();
+//       },
+//     );
+//   }
+// }

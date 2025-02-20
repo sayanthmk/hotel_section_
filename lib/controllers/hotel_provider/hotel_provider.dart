@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -150,12 +152,15 @@ class HotelProvider extends ChangeNotifier {
       }
 
       await docRef.set(finalHotelData);
-
+      notifyListeners();
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setString('hotelId', hotelId);
-
+      log('Final Hotel Data: ${JsonEncoder.withIndent('  ').convert(finalHotelData)}');
+      log(hotelId);
       clearImages();
       hotelData.clear();
+      //
+
       return hotelId;
     } catch (e) {
       debugPrint('Error submitting hotel: $e');
@@ -243,7 +248,6 @@ class HotelProvider extends ChangeNotifier {
       await prefs.remove('hotelId');
 
       hotelId = null;
-      // log('Hotel deleted successfully');
       return true;
     } catch (e) {
       debugPrint('Error deleting hotel: $e');

@@ -6,13 +6,16 @@ import 'package:hotel_side/controllers/location_provider/location_provider.dart'
 import 'package:hotel_side/controllers/reviewcontroller/review_provider.dart';
 import 'package:hotel_side/controllers/room_controller/roomprovider.dart';
 import 'package:hotel_side/controllers/widgets_controller/widgets_controller.dart';
+import 'package:hotel_side/firebase_options.dart';
 import 'package:hotel_side/views/splash_screen/splash.dart';
 import 'package:provider/provider.dart';
 import 'controllers/auth_service/auth_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 

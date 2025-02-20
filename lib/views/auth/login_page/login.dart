@@ -4,12 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:hotel_side/constants/colors/colors.dart';
 import 'package:hotel_side/views/auth/check_reg_page/regcheckpage.dart';
 import 'package:hotel_side/views/auth/login_page/custom_log_button.dart';
+import 'package:hotel_side/views/auth/login_page/login_container.dart';
+import 'package:hotel_side/views/auth/login_page/login_text_field.dart';
 import 'package:hotel_side/views/auth/phone.dart';
 import 'package:hotel_side/views/auth/register.dart';
 import 'package:hotel_side/widgets/auth_widgets/bottom_text_row.dart';
 import 'package:hotel_side/widgets/auth_widgets/divider.dart';
 import 'package:hotel_side/widgets/auth_widgets/gradiant_button.dart';
-import 'package:hotel_side/widgets/auth_widgets/textfrom_field.dart';
 import 'package:provider/provider.dart';
 import '../../../controllers/auth_service/auth_service.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -33,50 +34,7 @@ class LoginPage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
-                height: size.height * 0.3,
-                width: size.width * 1.0,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      AdminColors.primerybuttoncolor,
-                      AdminColors.primerybuttoncolor.withOpacity(0.8),
-                    ],
-                  ),
-                  borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(50),
-                    bottomRight: Radius.circular(50),
-                  ),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.hotel,
-                      size: 70,
-                      color: Colors.white,
-                    ),
-                    const SizedBox(height: 16),
-                    const Text(
-                      'Welcome Back',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      'Sign in to continue',
-                      style: TextStyle(
-                        color: Colors.white.withOpacity(0.8),
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              CustomLoginContainer(size: size),
               Padding(
                 padding: const EdgeInsets.all(24.0),
                 child: Column(
@@ -95,62 +53,9 @@ class LoginPage extends StatelessWidget {
                         ],
                       ),
                       padding: const EdgeInsets.all(20),
-                      child: Column(
-                        children: [
-                          CustomTextFormField(
-                            controller: emailController,
-                            labelText: 'Email',
-                            hintText: 'Enter your email',
-                            keyboardType: TextInputType.emailAddress,
-                            textInputAction: TextInputAction.next,
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Email is required';
-                              } else if (!RegExp(
-                                      r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-z]{2,7}$')
-                                  .hasMatch(value)) {
-                                return 'Please enter a valid email address';
-                              }
-                              return null;
-                            },
-                            borderColor: Colors.grey.withOpacity(0.3),
-                            focusedBorderColor: AdminColors.primerybuttoncolor,
-                            enabledBorderColor: Colors.grey.withOpacity(0.3),
-                            errorBorderColor: Colors.red.withOpacity(0.8),
-                            prefixIcon: const Icon(Icons.email_outlined,
-                                color: Colors.grey),
-                          ),
-                          const SizedBox(height: 20),
-                          CustomTextFormField(
-                            controller: passwordController,
-                            labelText: 'Password',
-                            hintText: 'Enter your Password',
-                            keyboardType: TextInputType.visiblePassword,
-                            textInputAction: TextInputAction.done,
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Password is required';
-                              } else if (value.length < 6) {
-                                return 'Password must be at least 6 characters';
-                              }
-                              return null;
-                            },
-                            borderColor: Colors.grey.withOpacity(0.3),
-                            focusedBorderColor: AdminColors.primerybuttoncolor,
-                            enabledBorderColor: Colors.grey.withOpacity(0.3),
-                            errorBorderColor: Colors.red.withOpacity(0.8),
-                            obscureText: true,
-                            prefixIcon: const Icon(Icons.lock_outline,
-                                color: Colors.grey),
-                            suffixIcon: const Icon(Icons.remove_red_eye,
-                                color: Colors.grey),
-                          ),
-                        ],
-                      ),
+                      child: LoginTextfield(
+                          emailController: emailController,
+                          passwordController: passwordController),
                     ),
                     const SizedBox(height: 20),
                     Align(
@@ -176,9 +81,14 @@ class LoginPage extends StatelessWidget {
                               emailController.text.trim(),
                               passwordController.text.trim(),
                             );
-                            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const HotelCheckPage(),
-                            ));
+                            // Navigator.of(context).push(MaterialPageRoute(
+                            //   builder: (context) => const HotelCheckPage(),
+                            // ));
+                            Navigator.of(context).pushAndRemoveUntil(
+                              MaterialPageRoute(
+                                  builder: (context) => HotelCheckPage()),
+                              (route) => false,
+                            );
                           } catch (e) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(

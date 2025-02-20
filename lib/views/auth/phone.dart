@@ -32,7 +32,7 @@ class PhoneInputPage extends StatelessWidget {
                     borderSide: BorderSide(),
                   ),
                 ),
-                initialCountryCode: 'US', // Set initial country code here
+                initialCountryCode: 'US',
                 onChanged: (phone) {
                   _phoneNumber = phone.completeNumber;
                 },
@@ -70,9 +70,7 @@ class PhoneInputPage extends StatelessWidget {
                             ),
                           );
                         },
-                        (verificationId) {
-                          // print('Auto-retrieval timeout');
-                        },
+                        (verificationId) {},
                       );
                     } catch (e) {
                       ScaffoldMessenger.of(context).showSnackBar(

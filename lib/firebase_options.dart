@@ -23,15 +23,9 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         return windows;
       case TargetPlatform.linux:
@@ -73,4 +67,27 @@ class DefaultFirebaseOptions {
     storageBucket: 'roombookingapp-da5df.appspot.com',
     measurementId: 'G-7557H1HTDJ',
   );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyBg71rA6v8ZlZJqxZOeVK2negbqrQfrrNw',
+    appId: '1:413226749154:ios:0bb4d4cfc93e51edd162bb',
+    messagingSenderId: '413226749154',
+    projectId: 'roombookingapp-da5df',
+    storageBucket: 'roombookingapp-da5df.appspot.com',
+    androidClientId: '413226749154-49fclsip7eo39t5m59nphc7jd5tqk7v7.apps.googleusercontent.com',
+    iosClientId: '413226749154-h0n3cp18f6surft7e8vmsk3tikt4onkn.apps.googleusercontent.com',
+    iosBundleId: 'com.example.hotelSide',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyBg71rA6v8ZlZJqxZOeVK2negbqrQfrrNw',
+    appId: '1:413226749154:ios:0bb4d4cfc93e51edd162bb',
+    messagingSenderId: '413226749154',
+    projectId: 'roombookingapp-da5df',
+    storageBucket: 'roombookingapp-da5df.appspot.com',
+    androidClientId: '413226749154-49fclsip7eo39t5m59nphc7jd5tqk7v7.apps.googleusercontent.com',
+    iosClientId: '413226749154-h0n3cp18f6surft7e8vmsk3tikt4onkn.apps.googleusercontent.com',
+    iosBundleId: 'com.example.hotelSide',
+  );
+
 }

@@ -1,6 +1,4 @@
 // ignore_for_file: use_build_context_synchronously
-
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hotel_side/constants/colors/colors.dart';
@@ -13,6 +11,7 @@ import 'package:hotel_side/widgets/auth_widgets/gradiant_button.dart';
 import 'package:hotel_side/widgets/auth_widgets/textfrom_field.dart';
 import 'package:provider/provider.dart';
 import '../../controllers/auth_service/auth_service.dart';
+import 'check_reg_page/regcheckpage.dart';
 
 class SignUpPage extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
@@ -174,16 +173,20 @@ class SignUpPage extends StatelessWidget {
                             text: "Create Account",
                             onTap: () async {
                               if (formKey.currentState!.validate()) {
-                                log("validate createUserWithEmailAndPassword");
                                 await authService
                                     .createUserWithEmailAndPassword(
                                   emailController.text.trim(),
                                   passwordController.text.trim(),
                                 );
-                                Navigator.pushReplacement(
-                                  context,
+                                // Navigator.pushReplacement(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //       builder: (context) => HotelCheckPage()),
+                                // );
+                                Navigator.of(context).pushAndRemoveUntil(
                                   MaterialPageRoute(
-                                      builder: (context) => LoginPage()),
+                                      builder: (context) => HotelCheckPage()),
+                                  (route) => false,
                                 );
                               }
                             },

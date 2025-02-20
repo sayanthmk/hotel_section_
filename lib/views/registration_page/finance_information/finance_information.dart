@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hotel_side/controllers/hotel_provider/hotel_provider.dart';
-import 'package:hotel_side/views/registration_page/finance_information/widgets/document_upload.dart';
 import 'package:hotel_side/views/registration_page/finance_information/widgets/finace_input_field.dart';
 import 'package:hotel_side/views/registration_page/finance_information/widgets/finance_card.dart';
 import 'package:hotel_side/views/registration_page/finance_information/widgets/radio_section.dart';
@@ -95,7 +94,7 @@ class FinanceInformation extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 24),
-                  const DocumentUploadSection(),
+                  // const DocumentUploadSection(),
                   const SizedBox(height: 32),
                   Center(
                     child: HotelButton(

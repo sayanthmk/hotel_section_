@@ -275,9 +275,9 @@ class RoomProvider extends ChangeNotifier {
           .collection('rooms')
           .doc(roomId)
           .delete();
-      _roomList.removeWhere((room) => room['room_id'] == roomId);
+      _roomList.removeWhere((room) => room['roomId'] == roomId);
 
-      if (_selectedRoom?['room_id'] == roomId) {
+      if (_selectedRoom?['roomId'] == roomId) {
         clearSelectedRoom();
       }
 

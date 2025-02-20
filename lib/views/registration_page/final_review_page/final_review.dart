@@ -49,9 +49,11 @@ class FinalReview extends StatelessWidget {
                   text: "Submit Hotel Details",
                   onTap: () {
                     hotelProvider.submitHotel().then((_) {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const BottomNavScreen(),
-                      ));
+                      Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(
+                            builder: (context) => const BottomNavScreen()),
+                        (route) => false,
+                      );
                     }).catchError((error) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(

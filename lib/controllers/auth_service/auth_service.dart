@@ -9,6 +9,9 @@ class AuthService with ChangeNotifier {
 
   User? get currentUser => _auth.currentUser;
   Stream<User?> get user => _auth.authStateChanges();
+  /////
+  User? _newuser;
+  User? get newuser => _newuser;
 
   Future<User?> signInWithEmailAndPassword(
       String email, String password) async {
